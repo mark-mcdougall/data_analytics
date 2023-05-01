@@ -1,0 +1,55 @@
+version: '3'
+services:
+  ##### DATA ANALYSIS STACK #####
+  jupyter:
+    container_name: data_analyst
+    build: ./python_data_analyst_container
+    networks: 
+      - connected_network
+    volumes:
+     - ./data_pipelines:/home/dataanalyst/data_pipelines
+     - ./mapping:/home/dataanalyst/mapping
+     - ./datasets:/home/dataanalyst/datasets
+    restart: always
+    ports:
+      # To serve the notebook
+     - "8889:8888"
+      # To allow multiple panel apps to be served: 50 instances
+     - "10052-10101:10052-10101"
+    
+    entrypoint: ["jupyter","notebook", "--ip=*"]
+  
+  ##### POSTGRES STACK: CONNECTED TO DATA ANALYSIS STACK #####
+  postgres:
+    container_name: postgres
+    image: postgres
+    networks: 
+      - connected_network
+    volumes: 
+      - ./postgres_container/pg_data:/var/lib/postgresql/data
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=github_projects
+      - POSTGRES_PASSWORD=password
+ 
+ ##### PORTAINER CONTAINER MANAGEMENT SOFTWARE #####
+  portainer:
+    container_name: portainer
+    image: portainer/portainer
+    volumes:
+     - ./portainer_data:/data
+     - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    ports:
+     - 9000:9000
+
+networks:
+  connected_network:
+    driver: "bridge"
+
+
+
+
