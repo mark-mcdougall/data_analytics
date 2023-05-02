@@ -1,0 +1,28 @@
+# NOTE. USER MUST INSTALL numpy BEFORE INSTALLING LIBRARIES FROM requirements.txt SO THAT cartopy DOES NOT ERROR AND CRASH DURING INSTALL.
+jupyter==1.0.0
+pandas==1.2.4 
+statsmodels==0.12.2 
+matplotlib==3.4.1
+seaborn==0.11.1
+plotly==4.14.3
+descartes==1.1.0
+pygeos==0.9
+feather-format==0.4.1
+# NEXT 2 LIBRARIES ARE REQUIRED FOR geoviews TO INSTALL:
+cython==0.29.23
+cartopy==0.18.0
+scikit-learn==0.24.1
+# holoviews ALSO INSTALLS HOLOVIZ panel:
+holoviews==1.14.3
+hvplot==0.7.0
+geoviews==1.9.1
+geopandas==0.9  
+pandas-profiling
+requests
+xlrd
+psycopg2-binary
+sqlalchemy==1.4.7
+selenium
+geopy
+streamz
+sqlalchemy_utils
