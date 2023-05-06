@@ -11,7 +11,7 @@ RUN apt-get -y install git
 # COPY requirements.txt AND INSTALL THE PYTHON LIBRARIES.
 COPY requirements.txt requirements.txt
 # NOTE. numpy MUST BE INSTALLED FIRST TO PREVENT cartopy FROM ERRORING DURING INSTALL. ALL OTHER LIBRARIES ARE INSTALLED VIA requirements.txt.
-RUN pip3 install numpy==1.20.0
+RUN pip3 install numpy==1.24.3
 RUN pip3 install -r requirements.txt
 
 # EXPOSE CONTAINER PORTS REQUIRED TO LAUNCH THE JUPYTER NOTEBOOK (CONTAINER PORT 8888, MAPPED TO LOCAL PORT 8889 IN docker-compose.yaml).
